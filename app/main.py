@@ -24,6 +24,8 @@ Menú de opciones a implementar:
 8. Generar un informe con la recaudación de cada depósito, ordenada de mayor a menor.
 """
 from funciones import menu_principal
+from dataset import crear_dataset
+datos = crear_dataset(20)
 
 """
     _summary_ Entrada al programa
@@ -31,4 +33,4 @@ from funciones import menu_principal
     """
 if __name__ == "__main__":
 
-    menu_principal()
+    menu_principal(datos)

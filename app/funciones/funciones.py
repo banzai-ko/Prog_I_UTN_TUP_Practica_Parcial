@@ -1,15 +1,16 @@
-from auxiliares import mostrar_menu
+from auxiliares import mostrar_menu, limpiar_pantalla, mostrar_matriz
 from validaciones import validar_opcion
+from dataset import crear_dataset
 
 
-def menu_principal() -> None:
-  mostrar_menu()
-  entrada = validar_opcion(1, 9)
-  
+def menu_principal(datos) -> None:
   while True:
+    mostrar_menu()
+    entrada = validar_opcion(1, 9)
     match entrada:
       case 1:
-        pass
+        print("Matriz")
+        mostrar_matriz(datos)
       case 2:
         pass
       case 3:
@@ -29,3 +30,5 @@ def menu_principal() -> None:
         break 
       case _:
         print("Opción incorrecta")
+
+  limpiar_pantalla()
