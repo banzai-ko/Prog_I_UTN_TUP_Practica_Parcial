@@ -196,6 +196,9 @@ def depositos_max_stock(dataset: list[list]) -> list:
       Lista de depositos con mayor stock de cada marca.
 
     """
-    lista_res = [(max_stock(dataset, 'Xiaomi'), max_stock(dataset, 'Nubia'), max_stock(dataset, 'Infinix'), max_stock(dataset, 'Samsung'))]
+    lista_res = [(
+        max_stock(dataset, 'Xiaomi'),
+        max_stock(dataset, 'Nubia'),
+        max_stock(dataset, 'Infinix'),max_stock(dataset, 'Samsung'))]
     
     return lista_res
