@@ -37,8 +37,7 @@ def crear_dataset(filas: int) -> list[list]:
 
     marca = random.choice(marcas)
 
-    i = 1
-    for _ in range(filas):
+    for i in range(filas):
         deposito = f"Deposito {i}"
         marca = random.choice(marcas)
         modelo = asignar_modelo(marca)
@@ -51,6 +50,5 @@ def crear_dataset(filas: int) -> list[list]:
             precio,
             cantidad,
         ]
-        i += 1
         dataset.append(elemento)
     return dataset
