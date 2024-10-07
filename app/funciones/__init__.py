@@ -1,1 +1,1 @@
-from .funciones import menu_principal
+from .menu import *

@@ -77,7 +77,7 @@ def sumar_existencias(dataset: list[list]) -> list:
             samsung_stock += stock
 
     existencias = [xiaomi_stock, nubia_stock,
-                    infinix_stock, samsung_stock]
+                   infinix_stock, samsung_stock]
 
     return existencias
 
@@ -122,35 +122,35 @@ def recaudacion(dataset: list[list]) -> list:
     return recaudacion
 
 
-def mostrar_recaudacion(recaudacion: list) -> None:
+def mostrar_recaudacion(recaudacion: list, dataset: list[list]) -> None:
     """Muestra la recaudación de forma tabular.
 
     Args:
-        dataset: La matriz a mostrar.
+        recaudacion: Lista con las recaudaciones.
+        dataset: La matriz de datos a mostrar.
     """
-
+    ordenado = bubble_sort_indices(recaudacion)
     encabezados = ["Deposito", "Recaudación"]
-    widht = len(encabezados) * 16 + 3
-    print_separator('-', widht)
-    print("|", end="")
-    for encabezado in encabezados:
-        print(f"{encabezado:^16}|", end="")
-    print()
-    print_separator('-', widht)
-    for i in range(len(recaudacion)):
-        print("|", end="")
-        print(f"{i+1:^16}|", end="")
-        print(f"{recaudacion[i]:^16.2f}|", end="")
-        print()
-    print_separator('-', widht)
+    width_deposito = 10   # Para que el depósito tenga suficiente espacio
+    width_recaudacion = 20  # Para la recaudación, que podría tener números grandes
+    print("-" * (width_deposito + width_recaudacion + 3))
+    print(f"|{'Deposito':^{width_deposito}}|{
+          'Recaudación':^{width_recaudacion}}|")
+    print("-" * (width_deposito + width_recaudacion + 3))
+
+    for i in range(len(ordenado)):
+        deposito = ordenado[i] + 1
+        recaudacion_valor = dataset[ordenado[i]][3] * dataset[ordenado[i]][4]
+
+        print(f"|{deposito:^{width_deposito}}|{
+              recaudacion_valor:>{width_recaudacion}.2f}|")
+
+    print("-" * (width_deposito + width_recaudacion + 3))
+    return None
 
 
 def min_stock(dataset: list[list]) -> list:
-    """Calcula el smartphone con menos stock.
-
-    Args:
-        dataset: La matriz de datos.
-    """
+    # Devuelve el depósito con menor stock
     first_run = True
 
     for i in range(len(dataset)):
@@ -165,16 +165,7 @@ def min_stock(dataset: list[list]) -> list:
 
 
 def max_stock(dataset: list[list], brand: str) -> list:
-    """Devuelve el depósito con mayor stock por marca.
-
-    Args:
-        dataset: La matriz de datos.
-        brand: La marca del smartphone.
-    Returns:  
-      Indice del deposito con mayor stock de esa marca.
-
-    """
-            
+    # Devuelve el depósito con mayor stock
     first_run = True
 
     for i in range(len(dataset)):
@@ -187,6 +178,8 @@ def max_stock(dataset: list[list], brand: str) -> list:
                 first_run = False
 
     return max_stock_index
+
+
 def depositos_max_stock(dataset: list[list]) -> list:
     """Devuelve una lista con los depositos con mayor stock por marca.
 
@@ -194,11 +187,71 @@ def depositos_max_stock(dataset: list[list]) -> list:
         dataset: La matriz de datos.
     Returns:  
       Lista de depositos con mayor stock de cada marca.
+    """
+    lista_res = [
+        max_stock(dataset, 'Xiaomi'), max_stock(dataset, 'Nubia'),
+        max_stock(dataset, 'Infinix'), max_stock(dataset, 'Samsung')]
+
+    return lista_res
+
+
+def bubble_sort_indices(prices: list) -> list:
+    """
+    Ordena una lista de precios de forma ascendente.
+    """
+    indices = list(range(len(prices)))
+
+    n = len(prices)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if float(prices[indices[j]]) < float(prices[indices[j+1]]):
+                indices[j], indices[j+1] = indices[j+1], indices[j]
+
+    return indices
+
+
+def mayores_50_mil(dataset: list[list]) -> list:
+    """Devuelve una lista con los depositos con que tienen mas de 50 mil u.
+
+    Args:
+        dataset: La matriz de datos.
+    Returns:  
+      Lista de depositos con mas de 50 mil u.
 
     """
-    lista_res = [(
-        max_stock(dataset, 'Xiaomi'),
-        max_stock(dataset, 'Nubia'),
-        max_stock(dataset, 'Infinix'),max_stock(dataset, 'Samsung'))]
-    
-    return lista_res
+    result_list = []
+    for i in range(len(dataset)):
+        stock = dataset[i][4]
+        if stock > 50000:
+            result_list.append(dataset[i])
+
+    return result_list
+
+
+def calcular_stock_marca(dataset: list[list], marca: str) -> int:
+    """Calcula el stock de una marca.
+
+    Args:
+        dataset: La matriz de datos.
+        marca: La marca del smartphone.
+    Returns:  
+      Cantidad de stock de la marca.
+
+    """
+    total = 0
+    for i in range(len(dataset)):
+        if dataset[i][1] == marca:
+            total += dataset[i][4]
+    return total
+
+
+def obtener_mayor(a, b, c, d):
+    # Devuelve el mayor entre 4 valores.
+    mayor = a
+    if b > mayor:
+        mayor = b
+    if c > mayor:
+        mayor = c
+    if d > mayor:
+        mayor = d
+    return mayor

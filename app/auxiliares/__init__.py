@@ -7,5 +7,9 @@ from .aux import (
     mostrar_recaudacion,
     limpiar_pantalla,
     min_stock,
-    max_stock
+    depositos_max_stock,
+    bubble_sort_indices,
+    mayores_50_mil,
+    calcular_stock_marca,
+    obtener_mayor
 )

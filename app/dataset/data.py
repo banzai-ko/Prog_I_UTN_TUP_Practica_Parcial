@@ -43,7 +43,7 @@ def crear_dataset(filas: int) -> list[list]:
         marca = random.choice(marcas)
         modelo = asignar_modelo(marca)
         precio = round(random.uniform(100, 400), 2)
-        cantidad = random.randint(2000, 20000)
+        cantidad = random.randint(10000, 60000)
         elemento = [
             deposito,
             marca,
