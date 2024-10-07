@@ -14,14 +14,21 @@ Codigo: ./app
 │    └── img    
 │   
 └ app                           Código
-    ├── __init__.py          
-    ├── main.py                 # Archivo principal de ejecución
-    ├── screen                  # Módulo menú
-    │     └── menu.py    
-    ├── funciones               # Funciones 
-    │     └── funciones.py    
-    ├── auxiliares              # Auxiliares 
-    │     └── aux.py    
-    └── validaciones            # Otro módulo 
-          └── validaciones.py
+    ├── auxiliares
+│   ├── __init__.py
+│   └── aux.py                  # Auxiliares 
+├── dataset
+│   ├── __init__.py
+│   └── data.py
+├── funciones
+│   ├── __init__.py
+│   ├── funciones_app.py         # Funciones 
+│   └── menu.py                  # Módulo funciones-llamadas del menu  
+├── main.py                      # Archivo principal de ejecución
+├── screen
+│   ├── __init__.py
+│   └── menu.py                  # Módulo Pantalla-mostrar menu 
+└── validaciones
+    ├── __init__.py
+    └── validaciones.py           # Otro módulo 
 ```
