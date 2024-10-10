@@ -34,7 +34,6 @@ def crear_dataset(filas: int) -> list[list]:
 
     dataset = []
     marcas = ["Xiaomi", "Nubia", "Infinix", "Samsung"]
-
     marca = random.choice(marcas)
 
     for i in range(filas):
